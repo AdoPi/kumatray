@@ -20,7 +20,7 @@ const (
 )
 
 func main() {
-	urlFlag := flag.String("url", "http://127.0.0.1:3001", "Uptime Kuma metrics URL")
+	urlFlag := flag.String("url", "http://127.0.0.1:3001/metrics", "Uptime Kuma metrics URL")
 	intervalFlag := flag.Int("interval", 30, "Intervalle en secondes")
 	flag.Parse()
 
@@ -64,7 +64,6 @@ func main() {
 }
 
 func checkMetrics(url string, status *int32) {
-	url = url + "/metrics"
 	client := http.Client{Timeout: 5 * time.Second}
 	resp, err := client.Get(url)
 	if err != nil {
